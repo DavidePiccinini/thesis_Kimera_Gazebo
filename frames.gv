@@ -1,0 +1,13 @@
+digraph G {
+"base_link" -> "cam0"[label="Broadcaster: /kimera_vio_ros/kimera_vio_ros_node\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1514557639.218 sec old)\nBuffer length: 0.000 sec\n"];
+"world" -> "base_link"[label="Broadcaster: /kimera_vio_ros/kimera_vio_ros_node\nAverage rate: 4.066 Hz\nMost recent transform: 1514557639.005 ( 0.213 sec old)\nBuffer length: 4.673 sec\n"];
+"base_link" -> "cam1"[label="Broadcaster: /kimera_vio_ros/kimera_vio_ros_node\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1514557639.218 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "imu"[label="Broadcaster: /play_1627035797676575700\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1514557639.218 sec old)\nBuffer length: 0.000 sec\n"];
+"imu" -> "left"[label="Broadcaster: /play_1627035797676575700\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1514557639.218 sec old)\nBuffer length: 0.000 sec\n"];
+"imu" -> "right"[label="Broadcaster: /play_1627035797676575700\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1514557639.218 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "gps"[label="Broadcaster: /play_1627035797676575700\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1514557639.218 sec old)\nBuffer length: 0.000 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1514557639.218"[ shape=plaintext ] ;
+ }->"world";
+}

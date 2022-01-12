@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<launch>
+  <arg name="dataset_name" value="Simulator"/>
+  <arg name="verbosity"    default="0" />
+
+  <!-- Set online to true if you use rosbag play or sensor stream -->
+  <arg name="online" default="true" />
+  
+  <!-- Set use_sim_time to true if you use rosbag with clock argument -->
+  <param name="use_sim_time" value="true"/>
+  
+  <!-- Set log_output to true and KimeraVIO will log output of all modules to the log_output_path location. -->
+  <arg name="log_output" default="false"/>
+  <arg name="log_output_path"
+    default="$(find kimera_vio_ros)/output_logs/$(arg dataset_name)"
+       if="$(arg log_output)"/>
+
+  <rosparam param="gt_gyro_bias"> [-0.002229, 0.0207, 0.07635] </rosparam>
+  <rosparam param="gt_accel_bias"> [-0.012492, 0.547666, 0.069073] </rosparam>
+
+  <arg name="use_lcd"   default="false"/>
+  <arg name="visualize" default="true"/>
+
+  <arg name="use_online_cam_params" value="false"/>
+
+  <!-- Change rosbag path if online argument is false -->
+  <arg name="rosbag_path" default=""
+    unless="$(arg online)"/>
+
+  <!-- Frame IDs -->
+  <arg name="base_link_frame_id" value="base_link"/>
+  <arg name="left_cam_frame_id"  value="stereo_cam_left_camera_frame"/>
+  <arg name="right_cam_frame_id" value="stereo_cam_right_camera_frame"/>
+  <arg name="world_frame_id"     default="world"/>
+  
+  <!-- Topics -->
+  <arg name="left_cam_topic"        value="/stereo_cam/left/camera/image"/>
+  <arg name="left_cam_info_topic"   value="/stereo_cam/left/camera/camera_info"/>
+  <arg name="right_cam_topic"       value="/stereo_cam/right/camera/image"/>
+  <arg name="right_cam_info_topic"	value="/stereo_cam/right/camera/camera_info"/>
+  <arg name="imu_topic"             value="/imu"/>
+
+  <!-- Perform stereo dense reconstruction? -->
+  <arg name="run_stereo_dense"     default="false"/>
+  <group ns="stereo_gray" if="$(arg run_stereo_dense)">
+    <!-- StereoSGBM -->
+    <node name="dense_stereo" pkg="image_undistort" type="dense_stereo_node" >
+      <param name="input_camera_info_from_ros_params" value="true"/>
+      <param name="first_camera_namespace"  value="cam0"/>
+      <param name="second_camera_namespace" value="cam1"/>
+      <param name="first_output_frame"      value="stereo_cam_left_camera_frame"/>
+      <param name="second_output_frame"     value="stereo_cam_right_camera_frame"/>
+
+      <param name="depth/use_sgbm"          value="true"/>
+      <param name="depth/do_median_blur"    value="false"/>
+      <param name="depth/use_mode_HH"       value="true"/>
+
+      <param name="scale"                   value="1.0"/>
+      <param name="process_every_nth_frame" value="1"/>
+      <param name="publish_tf"              value="false"/>
+
+      <rosparam file="$(find kimera_vio_ros)/cfg/calib/camchain-simulator.yaml"/>
+
+      <remap from="raw/first/image"         to="$(arg left_cam_topic)"/>
+      <remap from="raw/second/image"        to="$(arg right_cam_topic)"/>
+      <remap from="raw/first/camera_info"   to="$(arg left_cam_info_topic)"/>
+      <remap from="raw/second/camera_info"  to="$(arg right_cam_info_topic)"/>
+      
+    </node>
+  </group>
+
+  <!-- Launch actual pipeline -->
+  <include file="$(find kimera_vio_ros)/launch/kimera_vio_ros.launch"
+    pass_all_args="true"/>
+</launch>
