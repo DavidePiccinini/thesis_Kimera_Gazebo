@@ -16,6 +16,7 @@ find_package(GTSAM REQUIRED)
 if (NOT GTSAM_FOUND)
   message(FATAL_ERROR "This program requires the GTSAM library.")
 endif(NOT GTSAM_FOUND)
+find_package(GTSAM_UNSTABLE QUIET)
 
 ###########################################################################
 # Find Boost
@@ -30,9 +31,9 @@ endif()
 ###########################################################################
 # Compile
 add_library(KimeraRPGO SHARED
-  include/KimeraRPGO/logger.h
   src/GenericSolver.cpp
   src/RobustSolver.cpp
+  src/Logger.cpp
   include/KimeraRPGO/SolverParams.h )
 include_directories(include)
 # Add source code for max clique finder
@@ -59,7 +60,6 @@ target_link_libraries(KimeraRPGO
 
 target_compile_options(KimeraRPGO
   PRIVATE -Wall -pipe
-  PRIVATE -march=native
 )
 
 ###########################################################################

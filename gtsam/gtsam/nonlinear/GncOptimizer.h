@@ -42,7 +42,7 @@ static double Chi2inv(const double alpha, const size_t dofs) {
 
 /* ************************************************************************* */
 template<class GncParameters>
-class GncOptimizer {
+class GTSAM_EXPORT GncOptimizer {
  public:
   /// For each parameter, specify the corresponding optimizer: e.g., GaussNewtonParams -> GaussNewtonOptimizer.
   typedef typename GncParameters::OptimizerType BaseOptimizer;
@@ -142,8 +142,9 @@ class GncOptimizer {
    * provides an extra interface for the user to initialize the weightst
    * */
   void setWeights(const Vector w) {
-    if(w.size() != nfg_.size()){
-      throw std::runtime_error("GncOptimizer::setWeights: the number of specified weights"
+    if (size_t(w.size()) != nfg_.size()) {
+      throw std::runtime_error(
+          "GncOptimizer::setWeights: the number of specified weights"
           " does not match the size of the factor graph.");
     }
     weights_ = w;

@@ -81,7 +81,7 @@ class ArgumentList:
             return ArgumentList([])
 
     def __repr__(self) -> str:
-        return self.args_list.__repr__()
+        return repr(tuple(self.args_list))
 
     def __len__(self) -> int:
         return len(self.args_list)
@@ -169,7 +169,7 @@ class GlobalFunction:
                  return_type: ReturnType,
                  args_list: ArgumentList,
                  template: Template,
-                 parent: str = ''):
+                 parent: Any = ''):
         self.name = name
         self.return_type = return_type
         self.args = args_list

@@ -14,6 +14,13 @@
 
 #include "kimera-vio/backend/VioBackendParams.h"
 
+/* ADDED
+#include <gtsam/geometry/Rot3.h>
+#include <gtsam/geometry/Point3.h>
+#include <gtsam/nonlinear/ISAM2Params.h>
+#include "kimera-vio/common/VioNavState.h"
+*/ //ADDED
+
 #include <utility>
 
 namespace VIO {
@@ -43,12 +50,12 @@ void BackendParams::setIsam2Params(const BackendParams& vio_params,
 
   // TODO (Toni): remove hardcoded
   // Cache Linearized Factors seems to improve performance.
-  isam_param->setCacheLinearizedFactors(true);
+  isam_param->cacheLinearizedFactors = true;
   isam_param->relinearizeThreshold = vio_params.relinearizeThreshold_;
   isam_param->relinearizeSkip = vio_params.relinearizeSkip_;
   isam_param->findUnusedFactorSlots = true;
   // isam_param->enablePartialRelinearizationCheck = true;
-  isam_param->setEvaluateNonlinearError(false);  // only for debugging
+  isam_param->evaluateNonlinearError = false;  // only for debugging
   isam_param->enableDetailedResults = false;     // only for debugging.
   isam_param->factorization = gtsam::ISAM2Params::CHOLESKY;  // QR
 }
@@ -74,6 +81,31 @@ bool BackendParams::parseYAMLVioBackendParams(const YamlParser& yaml_parser) {
   yaml_parser.getYamlParam("initialVelocitySigma", &initialVelocitySigma_);
   yaml_parser.getYamlParam("initialAccBiasSigma", &initialAccBiasSigma_);
   yaml_parser.getYamlParam("initialGyroBiasSigma", &initialGyroBiasSigma_);
+  
+  /* ADDED
+  double initial_ground_truth_state_x;
+  double initial_ground_truth_state_y;
+  double initial_ground_truth_state_z;
+  double initial_ground_truth_state_roll;
+  double initial_ground_truth_state_pitch;
+  double initial_ground_truth_state_yaw;
+  yaml_parser.getYamlParam("initialGroundTruthState_x", &initial_ground_truth_state_x);
+  yaml_parser.getYamlParam("initialGroundTruthState_y", &initial_ground_truth_state_y);
+  yaml_parser.getYamlParam("initialGroundTruthState_z", &initial_ground_truth_state_z);
+  yaml_parser.getYamlParam("initialGroundTruthState_roll", &initial_ground_truth_state_roll);
+  yaml_parser.getYamlParam("initialGroundTruthState_pitch", &initial_ground_truth_state_pitch);
+  yaml_parser.getYamlParam("initialGroundTruthState_yaw", &initial_ground_truth_state_yaw);
+  
+  const gtsam::Point3 point_ = gtsam::Vector3(initial_ground_truth_state_x, initial_ground_truth_state_y, initial_ground_truth_state_z);
+  const gtsam::Rot3 rot_ = gtsam::Rot3::Ypr(initial_ground_truth_state_yaw, initial_ground_truth_state_pitch, initial_ground_truth_state_roll);
+  const gtsam::Pose3 pose_ = gtsam::Pose3(rot_, point_);
+  const gtsam::Vector3 velocity_(0, 0, 0);
+  const gtsam::Vector3 biasAcc_(0, 0, 0);
+  const gtsam::Vector3 biasGyro_(0, 0, 0);
+  const gtsam::imuBias::ConstantBias imu_bias_(biasAcc_, biasGyro_);
+  
+  initial_ground_truth_state_ = VioNavState(pose_, velocity_, imu_bias_);
+  */// ADDED
 
   // VISION PARAMS
   int linearization_mode_id;

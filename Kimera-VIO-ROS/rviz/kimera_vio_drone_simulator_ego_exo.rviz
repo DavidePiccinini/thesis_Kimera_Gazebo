@@ -1,0 +1,319 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 0
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /TF1/Frames1
+      Splitter Ratio: 0.6088709831237793
+    Tree Height: 261
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Expanded:
+      - /2D Pose Estimate1
+      - /2D Nav Goal1
+      - /Publish Point1
+    Name: Tool Properties
+    Splitter Ratio: 0.5886790156364441
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5181451439857483
+  - Class: rviz/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: Left Img
+  - Class: rviz/Displays
+    Help Height: 71
+    Name: Displays
+    Property Tree Widget:
+      Expanded: ~
+      Splitter Ratio: 0.5
+    Tree Height: 369
+Preferences:
+  PromptSaveOnExit: true
+Toolbars:
+  toolButtonStyle: 2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        base_footprint:
+          Value: false
+        base_link:
+          Value: false
+        base_stabilized:
+          Value: false
+        drone_fixed_orientation:
+          Value: false
+        laser0_frame:
+          Value: false
+        sonar_link:
+          Value: false
+        stereo_cam_left_camera_frame:
+          Value: false
+        stereo_cam_left_camera_optical_frame:
+          Value: false
+        stereo_cam_right_camera_frame:
+          Value: false
+        stereo_cam_right_camera_optical_frame:
+          Value: false
+        world:
+          Value: true
+      Marker Scale: 3
+      Name: TF
+      Show Arrows: false
+      Show Axes: true
+      Show Names: false
+      Tree:
+        world:
+          base_footprint:
+            base_stabilized:
+              base_link:
+                laser0_frame:
+                  {}
+                sonar_link:
+                  {}
+                stereo_cam_left_camera_frame:
+                  stereo_cam_left_camera_optical_frame:
+                    {}
+                  stereo_cam_right_camera_frame:
+                    stereo_cam_right_camera_optical_frame:
+                      {}
+          drone_fixed_orientation:
+            {}
+      Update Interval: 0
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /stereo_cam/left/camera/image
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Left Img
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /kimera_vio_ros/kimera_vio_ros_node/feature_tracks
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Debug Img
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+    - Class: voxblox_rviz_plugin/VoxbloxMesh
+      Enabled: true
+      Name: Map Reconstruction
+      Topic: /kimera_semantics_node/mesh
+      Unreliable: false
+      Value: true
+    - Angle Tolerance: 0.10000000149011612
+      Class: rviz/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: true
+      Enabled: true
+      Keep: 1
+      Name: Drone Position
+      Position Tolerance: 0.10000000149011612
+      Shape:
+        Alpha: 1
+        Axes Length: 0.699999988079071
+        Axes Radius: 0.20000000298023224
+        Color: 255; 25; 0
+        Head Length: 0.30000001192092896
+        Head Radius: 0.5
+        Shaft Length: 0.10000000149011612
+        Shaft Radius: 0.5
+        Value: Axes
+      Topic: /ground_truth/state
+      Unreliable: false
+      Value: true
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: false
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+      Name: Drone Model
+      Robot Description: robot_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: false
+      Visual Enabled: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: -0.09700000286102295
+        Min Value: -0.09700000286102295
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/LaserScan
+      Color: 0; 181; 217
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: Laser Scan
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.09000000357627869
+      Style: Spheres
+      Topic: /scan
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/LaserScan
+      Color: 234; 0; 3
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: Closest Obstacle Sector Scan
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.2199999988079071
+      Style: Spheres
+      Topic: /closest_obstacle_scan
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 255; 255; 255
+    Default Light: true
+    Fixed Frame: drone_fixed_orientation
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Theta std deviation: 0.2617993950843811
+      Topic: /initialpose
+      X std deviation: 0.5
+      Y std deviation: 0.5
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz/ThirdPersonFollower
+      Distance: 12.296568870544434
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: -2.3654212951660156
+        Y: 0.14965501427650452
+        Z: 1.1526290109031834e-6
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.4853973388671875
+      Target Frame: base_link
+      Value: ThirdPersonFollower (rviz)
+      Yaw: 3.2103946208953857
+    Saved:
+      - Class: rviz/ThirdPersonFollower
+        Distance: 6.814720153808594
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: ThirdPersonFollower
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.4953984022140503
+        Target Frame: base_link
+        Value: ThirdPersonFollower (rviz)
+        Yaw: 3.0454001426696777
+Window Geometry:
+  Debug Img:
+    collapsed: false
+  Displays:
+    collapsed: false
+  Height: 760
+  Hide Left Dock: false
+  Hide Right Dock: false
+  Left Img:
+    collapsed: false
+  QMainWindow State: 000000ff00000000fd00000004000000000000019e000002c3fc020000000efb0000001200530065006c0065006300740069006f006e00000000170000009b0000005d00fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730000000017000000a00000005d00fffffffb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073020000004a00000119000001f400000145fc00000017000001c70000001600fffffffa000000010100000002fb0000000a00560069006500770073020000000000000000000001f400000271fb00000010004c00650066007400200049006d00670100000000000001f40000007300fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb00000016004c006500660074002000430061006d0065007200610000000222000001490000000000000000fb000000120044006500620075006700200049006d006701000001e4000000f60000001600fffffffb0000000e003200440020004d00650073006800000004350000009f0000000000000000fb0000000a0049006d00610067006500000001f4000000ba0000000000000000fb000000100044006900730070006c00610079007300000001a700000107000000cc00ffffff000000010000019000000297fc0200000002fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004e20000003afc0100000002fb0000000800540069006d00650000000000000004e2000004e200fffffffb0000000800540069006d00650100000000000004500000000000000000000003b2000002c300000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730000000000ffffffff0000000000000000
+  Selection:
+    collapsed: false
+  Time:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: false
+  Width: 1366
+  X: 515
+  Y: 57

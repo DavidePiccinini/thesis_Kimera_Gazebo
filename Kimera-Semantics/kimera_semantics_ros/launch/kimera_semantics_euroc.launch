@@ -23,9 +23,9 @@
   <arg name="right_cam_info_topic"        default="/cam1/camera_info"/>
   <arg name="left_cam_topic"              default="/cam0/image_raw"/>
   <arg name="right_cam_topic"             default="/cam1/image_raw"/>
-  <!-- We don't have semantics in Euroc -->
+  <!-- We dont have semantics in Euroc -->
   <arg name="left_cam_segmentation_topic" default="/dev/null"/>
-  <!-- We don't use a depth topic, but a pointcloud directly -->
+  <!-- We dont use a depth topic, but a pointcloud directly -->
   <arg name="left_cam_depth_topic"        default="/dev/null"/>
   <arg name="use_freespace_pointcloud"    default="true" />
   <arg name="freespace_pointcloud"        default="/stereo_gray/dense_stereo/freespace_pointcloud"/>

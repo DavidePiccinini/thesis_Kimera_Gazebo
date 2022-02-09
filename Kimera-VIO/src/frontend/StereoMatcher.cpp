@@ -133,7 +133,7 @@ void StereoMatcher::sparseStereoReconstruction(StereoFrame* stereo_frame) {
   CHECK(stereo_frame->isRectified());
 
   //! Undistort rectify left keypoints
-  CHECK_GT(stereo_frame->left_frame_.keypoints_.size(), 0u)
+  CHECK_GE(stereo_frame->left_frame_.keypoints_.size(), 0u)
       << "Call feature detection on left frame first...";
   stereo_camera_->undistortRectifyLeftKeypoints(
       stereo_frame->left_frame_.keypoints_,
@@ -150,7 +150,7 @@ void StereoMatcher::sparseStereoReconstruction(StereoFrame* stereo_frame) {
                                &stereo_frame->keypoints_depth_);
 
   //! Fill out right frame keypoints
-  CHECK_GT(stereo_frame->right_keypoints_rectified_.size(), 0);
+  CHECK_GE(stereo_frame->right_keypoints_rectified_.size(), 0);
   stereo_camera_->distortUnrectifyRightKeypoints(
       stereo_frame->right_keypoints_rectified_,
       &stereo_frame->right_frame_.keypoints_);
