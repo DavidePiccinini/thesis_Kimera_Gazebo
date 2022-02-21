@@ -6,7 +6,7 @@ backend_modality: 0
 # INITIALIZATION PARAMETERS ###########################################################
 autoInitialize: 0
 
-## ADDED
+## ADDED (not needed)
 #initialGroundTruthState_x: 0
 #initialGroundTruthState_y: 0
 #initialGroundTruthState_z: 0.3

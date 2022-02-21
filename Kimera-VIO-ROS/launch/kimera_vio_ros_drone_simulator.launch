@@ -15,14 +15,14 @@
     default="$(find kimera_vio_ros)/output_logs/$(arg dataset_name)"
        if="$(arg log_output)"/>
 
-  <rosparam param="gt_gyro_bias"> [0, 0, 0] </rosparam>
-  <rosparam param="gt_accel_bias"> [0, 0, 0] </rosparam>
+  <rosparam param="gt_gyro_bias"> [0.01, 0.01, 0.01] </rosparam>
+  <rosparam param="gt_accel_bias"> [0.01, 0.01, 0.01] </rosparam>
 
-  <arg name="use_lcd"   default="true"/> <!-- -->
+  <arg name="use_lcd"   default="true"/><!--  -->
   <arg name="visualize" default="true"/>
 
   <arg name="use_online_cam_params" value="false"/>
-  <arg name="odometry_ground_truth_topic" value="/ground_truth/state"/> <!---->
+  <arg name="odometry_ground_truth_topic" value="/ground_truth/state"/><!-- -->
 
   <!-- Frame IDs -->
   <arg name="base_link_frame_id" value="base_link"/>

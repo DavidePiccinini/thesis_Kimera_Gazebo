@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-15"?>
 <launch>
-  <arg name="voxel_size"     default="0.10"/>
+  <arg name="voxel_size"     default="0.05"/>
   <arg name="max_ray_length_m" default="5"/>
   <param name="use_sim_time" value="true" />
 
